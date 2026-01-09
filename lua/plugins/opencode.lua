@@ -21,5 +21,14 @@ return {
 			end,
 			{ desc = 'Execute opencode action…' }
 		)
+
+		vim.keymap.set(
+			{ 'n', 't' },
+			'<S-x>',
+			function()
+				require('opencode').toggle()
+			end,
+			{ desc = 'Execute opencode toggle' }
+		)
 	end
 }
