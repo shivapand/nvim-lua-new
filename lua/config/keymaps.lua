@@ -27,53 +27,6 @@ vim.keymap.set('n', '<Leader>k', ':execute "tabmove" tabpagenr() + 1<CR>', {
 	desc = 'Move tab next'
 })
 
-vim.keymap.set(
-	'n',
-	'-',
-	function()
-		if vim.bo.filetype == 'nerdtree' then
-			-- If in NERDTree, go up one directory
-			vim.cmd('call nerdtree#ui_glue#invokeKeyMap("u")')
-		else
-			-- If not in NERDTree, toggle it
-			-- Use current directory if no file is open
-			if vim.fn.expand('%') == '' then
-				vim.cmd('NERDTreeToggle .')
-			else
-				vim.cmd('NERDTreeToggle%')
-			end
-		end
-	end,
-	{ desc = 'NERDTree toggle or go up directory' }
-)
-
-vim.keymap.set('n', '_', ':NERDTree<CR>', { desc = 'NERDTree root directory' })
-
-vim.keymap.set('n', '<C-n>', ':NERDTreeToggle<CR>', {
-	desc = 'Toggle NERDTree'
-})
-
-vim.keymap.set(
-	'n',
-	'<C-t>',
-	function()
-		if vim.bo.filetype == 'nerdtree' then
-			-- 't' opens the file in a new tab and switches to it.
-			vim.cmd('call nerdtree#ui_glue#invokeKeyMap("t")')
-			-- Go back to the previous tab, which should be the NERDTree tab.
-			vim.cmd('tabprevious')
-			-- Close the NERDTree window.
-			vim.cmd('NERDTreeClose')
-			-- Go to the next tab, which should be the newly opened file.
-			vim.cmd('tabnext')
-		else
-			-- If not in NERDTree, use normal Ctrl-t behavior
-			vim.cmd('tabnew')
-		end
-	end,
-	{ desc = 'Open in new tab (Ctrl-t in NERDTree, normal tabnew elsewhere)' }
-)
-
 vim.api.nvim_create_autocmd('LspAttach', {
 	group = vim.api.nvim_create_augroup('kickstart-lsp-attach', {
 		clear = true
@@ -201,3 +154,5 @@ vim.keymap.set(
 	end,
 	{ desc = 'Format current file' }
 )
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
