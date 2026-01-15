@@ -13,16 +13,24 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 init.lua
+badd +2 init.lua
 badd +13 lua/plugins/lazygit.lua
-badd +34 ~/.config/nvim/lua/plugins/opencode.lua
+badd +29 ~/.config/nvim/lua/plugins/opencode.lua
 badd +82 ~/.config/nvim/lua/plugins/mason-lspconfig.lua
 badd +19 lua/plugins/joplin.lua
 badd +203 ~/.config/nvim/lua/config/keymaps.lua
 badd +42 term://~/.config/nvim//407164:opencode
 badd +1 lua/plugins/vim-obsession.lua
+badd +8 ~/.config/nvim/lua/plugins/bufexplorer.lua
+badd +3 ~/.config/nvim/lua/plugins/ctrlp.lua
+badd +2 vim/obsession.vim
+badd +1 ~/.config/nvim/lua/config/autocmds.lua
+badd +6 vim/ctrlp.vim
 argglobal
 %argdel
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
+tabnew +setlocal\ bufhidden=wipe
 tabnew +setlocal\ bufhidden=wipe
 tabrewind
 edit init.lua
@@ -37,16 +45,15 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 2 - ((0 * winheight(0) + 10) / 20)
+let s:l = 2 - ((1 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
 keepjumps 2
 normal! 0
 tabnext
-edit ~/.config/nvim/lua/plugins/opencode.lua
+edit ~/.config/nvim/lua/config/keymaps.lua
 argglobal
-balt lua/plugins/vim-obsession.lua
 setlocal foldmethod=manual
 setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
 setlocal foldmarker={{{,}}}
@@ -57,11 +64,68 @@ setlocal foldnestmax=20
 setlocal foldenable
 silent! normal! zE
 let &fdl = &fdl
-let s:l = 34 - ((19 * winheight(0) + 10) / 20)
+let s:l = 1 - ((0 * winheight(0) + 21) / 43)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 34
+keepjumps 1
+normal! 0
+tabnext
+edit ~/.config/nvim/lua/config/autocmds.lua
+argglobal
+setlocal foldmethod=manual
+setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 7 - ((6 * winheight(0) + 21) / 43)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 7
+normal! 0
+tabnext
+edit vim/ctrlp.vim
+argglobal
+setlocal foldmethod=manual
+setlocal foldexpr=0
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 6 - ((5 * winheight(0) + 21) / 43)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 6
+normal! 0
+tabnext
+edit ~/.config/nvim/lua/plugins/ctrlp.lua
+argglobal
+setlocal foldmethod=manual
+setlocal foldexpr=v:lua.vim.treesitter.foldexpr()
+setlocal foldmarker={{{,}}}
+setlocal foldignore=#
+setlocal foldlevel=0
+setlocal foldminlines=1
+setlocal foldnestmax=20
+setlocal foldenable
+silent! normal! zE
+let &fdl = &fdl
+let s:l = 1 - ((0 * winheight(0) + 21) / 43)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 1
 normal! 0
 tabnext 2
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
