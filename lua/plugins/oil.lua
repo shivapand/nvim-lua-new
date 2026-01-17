@@ -31,6 +31,10 @@ return {
 					'actions.close',
 					mode = 'n'
 				},
+				['q'] = {
+					'actions.close',
+					mode = 'n'
+				},
 				['<C-l>'] = 'actions.refresh',
 				['-'] = {
 					'actions.parent',
