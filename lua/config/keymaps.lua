@@ -20,6 +20,28 @@ vim.keymap.set(
 	}
 )
 
+vim.keymap.set(
+	'v',
+	'<Leader>g',
+	function()
+		local path = vim.fn.expand('%:~:.')
+		local start_line = vim.fn.line('v')
+		local end_line = vim.fn.line('.')
+		if start_line > end_line then
+			start_line, end_line = end_line, start_line
+		end
+		if start_line == end_line then
+			vim.fn.setreg('+', path .. ':' .. start_line)
+		else
+			vim.fn.setreg('+', path .. ':' .. start_line .. '-' .. end_line)
+		end
+	end,
+	{
+		desc = 'Copy file path with line range',
+		silent = true
+	}
+)
+
 vim.keymap.set('n', '<Leader>j', ':execute "tabmove" tabpagenr() - 2<CR>', {
 	desc = 'Move tab prev'
 })
