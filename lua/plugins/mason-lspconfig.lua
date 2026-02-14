@@ -27,6 +27,14 @@ return {
 			}
 		})
 
+		vim.lsp.config('eslint', { root_dir = function(bufnr, on_dir)
+			local eslint_configs = { 'eslint.config.mjs', 'eslint.config.js' }
+			local root = vim.fs.root(bufnr, eslint_configs)
+			if root then
+				on_dir(root)
+			end
+		end })
+
 		vim.lsp.config('jsonls', {
 			settings = {
 				json = {
