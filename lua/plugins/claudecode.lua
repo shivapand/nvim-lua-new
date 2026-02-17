@@ -1,20 +1,26 @@
 return {
   'coder/claudecode.nvim',
   dependencies = { 'folke/snacks.nvim' },
-  opts = {
-    terminal = {
-      provider = 'snacks',
-      snacks_win_opts = {
-        position = 'float',
-        width = 120,
-        height = 30,
-        border = 'rounded',
+  config = function()
+    require('claudecode').setup({
+      track_selection = false,
+      terminal = {
+        provider = 'snacks',
+        snacks_win_opts = {
+          position = 'float',
+          width = 120,
+          height = 30,
+          border = 'rounded',
+        },
       },
-    },
-  },
+    })
+    -- Deregister tools that open files/diffs in the editor
+    local tools = require('claudecode.tools')
+    tools.tools['openFile'] = nil
+    tools.tools['openDiff'] = nil
+  end,
   keys = {
     { '<Leader>ac', '<cmd>ClaudeCode<cr>', desc = 'Toggle Claude' },
-    { '<Leader>as', '<cmd>ClaudeCodeSend<cr>', mode = 'v', desc = 'Send selection to Claude' },
     {
       '<Leader>af',
       function()
