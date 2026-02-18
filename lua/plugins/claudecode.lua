@@ -15,7 +15,8 @@ return {
       },
     })
     -- Deregister tools that open files/diffs in the editor
-    local tools = require('claudecode.tools')
+    -- MUST use 'claudecode.tools.init' to match the server's require path
+    local tools = require('claudecode.tools.init')
     tools.tools['openFile'] = nil
     tools.tools['openDiff'] = nil
   end,
